@@ -1,8 +1,8 @@
-## Zenzky Auctions
+# Zenzky Auctions
 
-#### Full Stack App
+### Full Stack App
 
-Laravel 10, Vue 3, Inertia, Tailwind, MySQL
+#### Laravel 10, Vue 3, Inertia, Tailwind, MySQL
 
 # Setups
 
