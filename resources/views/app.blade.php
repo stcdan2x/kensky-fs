@@ -12,7 +12,6 @@
         <style>body {background-color: gray;}</style>
     </head>
     <body class="antialiased">
-        <h1>Laravel Server test</h1>
         @inertia
     </body>
 </html>

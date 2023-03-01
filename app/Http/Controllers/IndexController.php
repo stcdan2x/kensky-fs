@@ -8,4 +8,7 @@ class IndexController extends Controller {
     public function index() {
         return inertia('Index/Index');
     }
+    public function test() {
+        return inertia('Index/Test');
+    }
 }

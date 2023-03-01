@@ -1,6 +1,6 @@
 <template lang="">
-  <div>TEST</div>
-  <Link href="/test">index link</Link>
+  <div>NEW TEST</div>
+  <Link href="/">test link</Link>
 </template>
 
 <script setup>
