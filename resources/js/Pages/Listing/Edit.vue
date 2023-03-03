@@ -78,6 +78,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import route from '../../../../vendor/tightenco/ziggy/src/js';
 
 const props = defineProps({ listing: Object });
 
@@ -92,8 +93,10 @@ const form = useForm({
   price: props.listing.price,
 });
 
-const update = () => form.put(`/listing/${props.listing.id}`);
-const destroy = () => form.delete(`/listing/${props.listing.id}`);
+const update = () =>
+  form.put(route('listing.update', { listing: props.listing.id }));
+const destroy = () =>
+  form.delete(route('listing.destroy', { listing: props.listing.id }));
 </script>
 
 <style>

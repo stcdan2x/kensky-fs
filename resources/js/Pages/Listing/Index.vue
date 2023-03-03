@@ -4,14 +4,18 @@
   <br />
   <br />
   <div v-for="listing in listings" :key="listing.id">
-    <Link :href="`/listing/${listing.id}`">
+    <Link :href="route('listing.show', { listing: listing.id })">
       {{ listing.id }}
       <ListingAddress :listing-data="listing" />
     </Link>
     ---
-    <Link :href="`/listing/${listing.id}/edit`"> EDIT </Link>
+    <Link :href="route('listing.edit', { listing: listing.id })"> EDIT </Link>
     ---
-    <Link :href="`/listing/${listing.id}`" method="DELETE" as="button">
+    <Link
+      :href="route('listing.destroy', { listing: listing.id })"
+      method="DELETE"
+      as="button"
+    >
       DELETE
     </Link>
   </div>
@@ -24,7 +28,6 @@ import ListingAddress from '@/Components/ListingAddress.vue';
 defineProps({
   listings: Array,
 });
-
 </script>
 
 <style>
