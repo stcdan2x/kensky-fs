@@ -1,33 +1,47 @@
-<template lang="">
-  <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
-    <Box class="md:col-span-7 flex items-center w-full">
-      <div class="w-full text-center font-medium text-gray-500">No images</div>
+<template>
+  <div class="mb-4">
+    <Link href="/listing"> ← Go back to Listings </Link>
+  </div>
+
+  <section class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
+    <Box v-if="!hasOffers" class="flex md:col-span-7 items-center">
+      <div class="w-full text-center font-medium text-gray-500">No offers</div>
     </Box>
-    <div class="md:col-span-5 flex flex-col gap-4">
+
+    <div v-else class="md:col-span-7 flex flex-col gap-4">
+      <Offer
+        v-for="offer in listing.offers"
+        :key="offer.id"
+        :offer="offer"
+        :listing-price="listing.price"
+        :is-sold="listing.sold_at != null"
+      />
+    </div>
+
+    <div class="md:col-span-5">
       <Box>
-        <template #header> Basic info </template>
+        <template #header>Basic Info</template>
         <Price :price="listing.price" class="text-2xl font-bold" />
+
         <ListingSpace :listing="listing" class="text-lg" />
         <ListingAddress :listing-data="listing" class="text-gray-500" />
       </Box>
-
-      <Box>
-        <template #header> Offer </template>
-        Make an offer
-      </Box>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
 import ListingAddress from '@/Components/ListingAddress.vue';
 import ListingSpace from '@/Components/ListingSpace.vue';
 import Price from '@/Components/Price.vue';
-import Box from '../../Components/UI/Box.vue';
+import Box from '@/Components/UI/Box.vue';
+import { Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import Offer from '@/Pages/Realtor/Show/Components/Offer.vue';
 
-defineProps({
-  listing: Object,
-});
+const props = defineProps({ listing: Object });
+console.log(props);
+
+// const hasOffers = computed(() => props.listing.offers.length);
+const hasOffers = computed(() => 6);
 </script>
-
-<style lang=""></style>
