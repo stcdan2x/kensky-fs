@@ -9,10 +9,8 @@
         @vite('resources/js/app.js')
         @inertiaHead
 
-        <!-- Styles -->
-        <style>body {background-color: gray;}</style>
     </head>
-    <body class="antialiased">
+    <body class="bg-gray-300 dark:bg-gray-500 text-black dark:text-white antialiased">
         @inertia
     </body>
 </html>
