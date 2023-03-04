@@ -13,8 +13,6 @@ class ListingController extends Controller {
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
         $filters = $request->only([
@@ -35,8 +33,6 @@ class ListingController extends Controller {
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create() {
         // $this->authorize('create', Listing::class);
@@ -45,9 +41,6 @@ class ListingController extends Controller {
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
         $request->user()->listings()->create(
@@ -74,11 +67,6 @@ class ListingController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Listing $listing) {
-        // if (Auth::user()->cannot('view', $listing)) {
-        //     abort(403);
-        // }
-        // $this->authorize('view', $listing);
-
         return inertia(
             'Listing/Show',
             [
