@@ -1,4 +1,4 @@
-# Zenzky Auctions
+# Kenzky Auctions
 
 ### Full Stack App
 
