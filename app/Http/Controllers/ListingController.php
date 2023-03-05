@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller {
     public function __construct() {
@@ -43,6 +42,7 @@ class ListingController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
+        // $request->user() or Auth::user() to get the current user
         $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:0|max:20',

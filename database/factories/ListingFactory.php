@@ -22,7 +22,8 @@ class ListingFactory extends Factory {
             "code" => fake()->postcode(),
             "street" => fake()->streetName(),
             "street_nr" => fake()->numberBetween(108, 998),
-            "price" => fake()->numberBetween(20_000, 9_000_000)
+            "price" => fake()->numberBetween(20_000, 9_000_000),
+            "by_user_id" => fake()->numberBetween(1, 10),
         ];
     }
 }

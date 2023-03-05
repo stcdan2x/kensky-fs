@@ -21,6 +21,7 @@ class Listing extends Model {
         'price'
     ];
 
+    // create relationship with User using 'by_user_id' as foreign key
     public function owner(): BelongsTo {
         return $this->belongsTo(
             \App\Models\User::class,

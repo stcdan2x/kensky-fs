@@ -5,13 +5,13 @@
         <input
           v-model.number="filterForm.priceFrom"
           type="text"
-          placeholder="Price from"
+          placeholder="Min price"
           class="input-filter-l w-28"
         />
         <input
           v-model.number="filterForm.priceTo"
           type="text"
-          placeholder="Price to"
+          placeholder="Max price"
           class="input-filter-r w-28"
         />
       </div>
@@ -33,13 +33,13 @@
         <input
           v-model.number="filterForm.areaFrom"
           type="text"
-          placeholder="Area from"
+          placeholder="Min area"
           class="input-filter-l w-28"
         />
         <input
           v-model.number="filterForm.areaTo"
           type="text"
-          placeholder="Area to"
+          placeholder="Max area"
           class="input-filter-r w-28"
         />
       </div>
@@ -52,7 +52,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
-import route from '../../../../vendor/tightenco/ziggy/src/js';
+import route from '../../../../../../vendor/tightenco/ziggy/src/js';
 
 const props = defineProps({
   filters: Object,

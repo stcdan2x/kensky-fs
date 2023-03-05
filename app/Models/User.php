@@ -51,6 +51,7 @@ class User extends Authenticatable {
         );
     }
 
+    // create relationship with listings using 'by_user_id' as foreign key
     public function listings(): HasMany {
         return $this->hasMany(
             \App\Models\Listing::class,

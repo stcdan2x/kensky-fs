@@ -9,7 +9,7 @@
           </div>
         </div>
         <ListingSpace :listing="listing" class="text-lg" />
-        <ListingAddress :listing="listing" class="text-gray-500" />
+        <ListingAddress :listing-data="listing" class="text-gray-500" />
       </Link>
     </div>
 

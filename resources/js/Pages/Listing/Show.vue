@@ -8,7 +8,7 @@
         <template #header> Basic info </template>
         <Price :price="listing.price" class="text-2xl font-bold" />
         <ListingSpace :listing="listing" class="text-lg" />
-        <ListingAddress :listing="listing" class="text-gray-500" />
+        <ListingAddress :listing-data="listing" class="text-gray-500" />
       </Box>
 
       <Box>
