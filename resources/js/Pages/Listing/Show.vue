@@ -71,6 +71,7 @@ import ListingSpace from '@/Components/ListingSpace.vue';
 import Price from '@/Components/Price.vue';
 import Box from '@/Components/UI/Box.vue';
 import { ref } from 'vue';
+
 import { useMonthlyPayment } from '@/Composables/useMonthlyPayment';
 
 const props = defineProps({
