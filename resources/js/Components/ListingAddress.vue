@@ -6,6 +6,6 @@
 
 <script setup>
 defineProps({
-  listingData: Object,
+  listing: Object,
 });
 </script>
