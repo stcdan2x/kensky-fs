@@ -78,7 +78,7 @@ watch(
         preserveState: true,
         preserveScroll: true,
       }),
-    1000,
+    500,
   ),
 );
 </script>

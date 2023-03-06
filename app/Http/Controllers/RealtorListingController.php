@@ -36,7 +36,7 @@ class RealtorListingController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        // $this->authorize('create', Listing::class);
+
         return inertia('Realtor/Create');
     }
 
@@ -94,8 +94,13 @@ class RealtorListingController extends Controller {
     public function destroy(Listing $listing) {
         $listing->deleteOrFail();
 
-        return redirect()->back()
-            ->with('success', 'Listing was deleted!');
+        redirect()->route('index')
+            ->with('success', 'Indx Listing was deleted!');
+        redirect()->route('listing.index')
+            ->with('success', 'MAIN Listing was deleted!');
+
+        // redirect()->back()
+        //     ->with('success', 'Listing was deleted!');
     }
 
     public function restore(Listing $listing) {

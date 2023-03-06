@@ -30,6 +30,7 @@ class ListingController extends Controller {
         );
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -107,6 +108,6 @@ class ListingController extends Controller {
         $listing->delete();
 
         return redirect()->back()
-            ->with('success', 'Listing was deleted!');
+            ->with('success', 'OBSOLETE Listing was deleted!');
     }
 }

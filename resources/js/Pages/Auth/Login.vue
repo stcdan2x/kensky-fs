@@ -39,9 +39,11 @@
 <script setup>
 import { useForm, Link } from '@inertiajs/vue3';
 import route from '../../../../vendor/tightenco/ziggy/src/js';
+
 const form = useForm({
   email: null,
   password: null,
 });
+
 const login = () => form.post(route('login.store'));
 </script>

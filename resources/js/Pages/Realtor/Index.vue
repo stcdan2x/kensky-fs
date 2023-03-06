@@ -41,6 +41,7 @@
             :href="route('realtor.listing.destroy', { listing: listing.id })"
             as="button"
             method="delete"
+            @click="activate"
           >
             Delete
           </Link>
