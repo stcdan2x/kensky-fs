@@ -26,6 +26,7 @@ class RealtorListingController extends Controller {
                     ->filter($filters)
                     ->paginate(5)
                     ->withQueryString()
+                    // ->get()
             ]
         );
     }
@@ -94,13 +95,8 @@ class RealtorListingController extends Controller {
     public function destroy(Listing $listing) {
         $listing->deleteOrFail();
 
-        redirect()->route('index')
-            ->with('success', 'Indx Listing was deleted!');
-        redirect()->route('listing.index')
-            ->with('success', 'MAIN Listing was deleted!');
-
-        // redirect()->back()
-        //     ->with('success', 'Listing was deleted!');
+        redirect()->back()
+            ->with('success', 'Listing was deleted!');
     }
 
     public function restore(Listing $listing) {

@@ -41,7 +41,6 @@
             :href="route('realtor.listing.destroy', { listing: listing.id })"
             as="button"
             method="delete"
-            @click="activate"
           >
             Delete
           </Link>
@@ -61,7 +60,7 @@
   </section>
 
   <section
-    v-if="listings.data.length"
+    v-if="listings.total > 5"
     class="w-full flex justify-center mt-4 mb-4"
   >
     <Pagination :links="listings.links" />
@@ -77,8 +76,10 @@ import Box from '@/Components/UI/Box.vue';
 import Pagination from '@/Components/UI/Pagination.vue';
 import RealtorFilters from '@/Pages/Realtor/Index/Components/RealtorFilters.vue';
 
-defineProps({
+const props = defineProps({
   listings: Object,
   filters: Object,
 });
+
+console.log(props);
 </script>

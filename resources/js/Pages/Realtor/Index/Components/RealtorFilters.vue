@@ -32,7 +32,7 @@
 
 <script setup>
 import { reactive, watch, computed } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 import { debounce } from 'lodash';
 import route from '../../../../../../vendor/tightenco/ziggy/src/js';
 
@@ -49,11 +49,11 @@ const sortLabels = {
   ],
   price: [
     {
-      label: 'Pricey',
+      label: 'Highest',
       value: 'desc',
     },
     {
-      label: 'Cheapest',
+      label: 'Lowest',
       value: 'asc',
     },
   ],
@@ -74,11 +74,11 @@ watch(
   filterForm,
   debounce(
     () =>
-      Inertia.get(route('realtor.listing.index'), filterForm, {
+      router.get(route('realtor.listing.index'), filterForm, {
         preserveState: true,
         preserveScroll: true,
       }),
-    500,
+    1000,
   ),
 );
 </script>
