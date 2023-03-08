@@ -35,6 +35,7 @@ import Box from '@/Components/UI/Box.vue';
 import { useForm } from '@inertiajs/vue3';
 import { computed, watch } from 'vue';
 import { debounce } from 'lodash';
+import route from '../../../../../../vendor/tightenco/ziggy/src/js';
 
 const props = defineProps({
   listingId: Number,
