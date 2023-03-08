@@ -68,6 +68,9 @@ class ListingController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Listing $listing) {
+        // load images - listing relationship
+        $listing->load(['images']);
+        
         return inertia(
             'Listing/Show',
             [
