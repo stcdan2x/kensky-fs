@@ -59,6 +59,6 @@ const emit = defineEmits(['offerUpdated']);
 
 watch(
   () => form.amount,
-  debounce((value) => emit('offerUpdated', value), 200),
+  debounce((value) => emit('offerUpdated', value), 500),
 );
 </script>
