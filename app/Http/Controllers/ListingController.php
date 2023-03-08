@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller {
     public function __construct() {
@@ -71,10 +72,14 @@ class ListingController extends Controller {
         // load images - listing relationship
         $listing->load(['images']);
         
+        // $offer = $listing->offers->where('bidder_id', Auth::user()?->id);
+        $offer = Auth::user() ? $listing->offers()->byCurrentUser()->first() : null;
+
         return inertia(
             'Listing/Show',
             [
-                'listing' => $listing
+                'listing' => $listing,
+                'offer' => $offer
             ]
         );
     }

@@ -68,11 +68,12 @@
       </Box>
 
       <MakeOffer
-        v-if="user"
+        v-if="user && !offer"
         :listing-id="listing.id"
         :price="listing.price"
         @offer-updated="updatedPrice = $event"
       />
+      <OfferMade v-if="user && offer" :offer="offer" />
     </div>
   </div>
 </template>
@@ -86,9 +87,11 @@ import { ref, computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { useMonthlyPayment } from '@/Composables/useMonthlyPayment';
 import MakeOffer from './Show/Components/MakeOffer.vue';
+import OfferMade from './Show/Components/OfferMade.vue';
 
 const props = defineProps({
   listing: Object,
+  offer: Object,
 });
 
 const interestRate = ref(2.5);

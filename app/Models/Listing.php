@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Listing extends Model {
     use HasFactory, SoftDeletes;
@@ -69,7 +69,7 @@ class Listing extends Model {
             fn ($query, $value) => $query->where('area', '<=', $value)
         )->when(
             $filters['deleted'] ?? false,
-            fn ($query, $value) => $query->withTrashed()
+            fn ($query, $value) => $query->onlyTrashed()
         )->when(
             $filters['by'] ?? false,
             fn ($query, $value) => !in_array($value, $this->sortable) ? $query
