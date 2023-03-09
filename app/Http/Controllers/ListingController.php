@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller {
+    // apply policy
     public function __construct() {
+        // able to apply Listing policy to all actions since this is a resource controller using default actions:
         $this->authorizeResource(Listing::class, 'listing');
     }
 
@@ -25,6 +27,7 @@ class ListingController extends Controller {
                 'filters' => $filters,
                 'listings' => Listing::mostRecent()
                     ->filter($filters)
+                    ->notSold()
                     ->paginate(10)
                     ->withQueryString()
             ]
@@ -36,7 +39,12 @@ class ListingController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create() {
-        // $this->authorize('create', Listing::class);
+        /** sample policy implementation:
+         * 
+         * $this->authorize('create', Listing::class);  // specify full class name  
+         * 
+         */
+
         return inertia('Listing/Create');
     }
 
@@ -69,6 +77,16 @@ class ListingController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Listing $listing) {
+        /** sample policy implementation:
+         * 
+         * if (Auth::user()->cannot('view', $listing)) {
+         *      abort(403);
+         * }
+         * 
+         * OR simply:         * 
+         * $this->authorize('view', $listing);
+         */
+
         // load images - listing relationship
         $listing->load(['images']);
         

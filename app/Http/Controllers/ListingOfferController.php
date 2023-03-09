@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class ListingOfferController extends Controller {
     public function store(Listing $listing, Request $request) {
+        // make sure listing is not yet sold
+        $this->authorize('updateNotSold', $listing);
+
         $listing->offers()->save(
             Offer::make(
                 $request->validate([

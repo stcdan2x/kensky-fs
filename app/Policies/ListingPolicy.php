@@ -9,6 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class ListingPolicy {
    use HandlesAuthorization;
 
+   // for overriding many or all policies:
    public function before(?User $user, $ability) {
       if ($user?->is_admin /*&& $ability === 'update'*/) {
          return true;
@@ -33,7 +34,12 @@ class ListingPolicy {
     * @return \Illuminate\Auth\Access\Response|bool
     */
    public function view(?User $user, Listing $listing) {
-      return true;
+
+      if ($user?->id === $listing->by_user_id) {
+         return true;
+      }
+
+      return $listing->sold_at === null;
    }
 
    /**
@@ -54,7 +60,15 @@ class ListingPolicy {
     * @return \Illuminate\Auth\Access\Response|bool
     */
    public function update(User $user, Listing $listing) {
-      return $user->id === $listing->by_user_id;
+      /**
+       * for overriding specific action policy:
+       * return $user->id === $listing->by_user_id || $user->is_admin
+       */
+      return ($user->id === $listing->by_user_id) && ($listing->sold_at === null);
+   }
+
+   public function updateNotSold(User $user, Listing $listing) {
+      return $listing->sold_at === null;
    }
 
    /**

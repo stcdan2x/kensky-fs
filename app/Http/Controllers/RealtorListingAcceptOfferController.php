@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class RealtorListingAcceptOfferController extends Controller {
     public function __invoke(Offer $offer) {
+        // apply policy to allow accepting offers only if allowed in the update policy
+        $this->authorize('update', $offer->listing);
+
         // Accept selected offer
         // $offer->accepted_at = now(); $offer->save();
         $offer->update(['accepted_at' => now()]);
 
-        // Reject all other offers
+        $offer->listing->sold_at = now();
+        $offer->listing->save();
+
+        // Reject all offers except this current offer
         $offer->listing->offers()->except($offer)
             ->update(['rejected_at' => now()]);
 
