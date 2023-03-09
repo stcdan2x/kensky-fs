@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class RealtorListingAcceptOfferController extends Controller {
     public function __invoke(Offer $offer) {
         // Accept selected offer
+        // $offer->accepted_at = now(); $offer->save();
         $offer->update(['accepted_at' => now()]);
 
         // Reject all other offers
@@ -17,7 +18,7 @@ class RealtorListingAcceptOfferController extends Controller {
         return redirect()->back()
             ->with(
                 'success',
-                "Offer #{$offer->id} accepted, other offers rejected"
+                "Offer with ID:{$offer->id} accepted, other offers automatically rejected"
             );
     }
 }
