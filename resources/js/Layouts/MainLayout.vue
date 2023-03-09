@@ -13,6 +13,14 @@
           <Link :href="route('index')">Kenzky Auctions</Link>
         </div>
         <div v-if="user" class="flex items-center gap-4">
+          <div class="text-gray-500 relative pr-2 py-2 text-lg">
+            🔔
+            <div
+              class="absolute right-0 top-0 w-5 h-5 bg-red-700 dark:bg-red-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center"
+            >
+              {{ notificationCount }}
+            </div>
+          </div>
           <Link
             class="text-sm text-gray-500"
             :href="route('realtor.listing.index')"
@@ -53,4 +61,8 @@ import { Link, usePage } from '@inertiajs/vue3';
 
 const flashMsg = computed(() => usePage().props.flash.success);
 const user = computed(() => usePage().props.user);
+
+const notificationCount = computed(() =>
+  Math.min(usePage().props.user.notificationCount, 9),
+);
 </script>
