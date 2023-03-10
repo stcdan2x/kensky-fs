@@ -26,7 +26,7 @@ class OfferMade extends Notification {
      * @return array<int, string>
      */
     public function via(object $notifiable): array {
-        return ['database, mail'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -39,7 +39,7 @@ class OfferMade extends Notification {
                 'See Your Listing',
                 route('realtor.listing.show', ['listing' => $this->offer->listing_id])
             )
-            ->line('Thank you for registering!');
+            ->line('We hope you find a suitable offer soon!');
     }
 
     /**
