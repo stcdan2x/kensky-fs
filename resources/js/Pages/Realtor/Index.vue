@@ -95,7 +95,7 @@
   <EmptyState v-else>No listings yet</EmptyState>
 
   <section
-    v-if="listings.data.length > 5"
+    v-if="listings.total > 5"
     class="w-full flex justify-center mt-4 mb-4"
   >
     <Pagination :links="listings.links" />

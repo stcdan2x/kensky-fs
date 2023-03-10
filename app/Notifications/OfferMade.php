@@ -8,8 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class OfferMade extends Notification
-{
+class OfferMade extends Notification {
     use Queueable;
 
     /**
@@ -17,8 +16,7 @@ class OfferMade extends Notification
      */
     public function __construct(
         private Offer $offer
-    )
-    {
+    ) {
         //
     }
 
@@ -27,20 +25,21 @@ class OfferMade extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
-    {
-        return ['database'];
+    public function via(object $notifiable): array {
+        return ['database, mail'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
-    {
+    public function toMail(object $notifiable): MailMessage {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line("New offer ({$this->offer->amount}) was made for your listing")
+            ->action(
+                'See Your Listing',
+                route('realtor.listing.show', ['listing' => $this->offer->listing_id])
+            )
+            ->line('Thank you for registering!');
     }
 
     /**
@@ -48,8 +47,7 @@ class OfferMade extends Notification
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable): array
-    {
+    public function toArray(object $notifiable): array {
         return [
             'offer_id' => $this->offer->id,
             'listing_id' => $this->offer->listing_id,
