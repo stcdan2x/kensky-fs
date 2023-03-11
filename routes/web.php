@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
@@ -53,7 +54,7 @@ Route::delete('logout', [AuthController::class, 'destroy'])
    ->name('logout');
 
 Route::get('/email/verify', function () {
-   return inertia('Auth/VerifyEmail');
+   return inertia('Auth/VerifyMail');
 })
    ->middleware('auth')->name('verification.notice');
 
