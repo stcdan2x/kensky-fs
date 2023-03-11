@@ -43,7 +43,7 @@ Route::put(
 )->name('notification.seen')->middleware('auth');
 
 Route::resource('listing.offer', ListingOfferController::class)
-   ->middleware('auth')
+   ->middleware(['auth', 'verified'])
    ->only(['store']);
 
 Route::get('login', [AuthController::class, 'create'])
